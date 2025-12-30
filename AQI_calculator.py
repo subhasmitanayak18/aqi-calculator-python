@@ -1,5 +1,9 @@
-pm25=int(input("Enter PM2.5 concentration (µg/m³):"))
-pm10=int(input("Enter PM10 concentration (µg/m³):"))
+try:
+ pm25=int(input("Enter PM2.5 concentration (µg/m³):"))
+ pm10=int(input("Enter PM10 concentration (µg/m³):"))
+except ValueError:
+   print("Please Enter valid numeric values")
+   exit()
 def calculate_aqi(pm25,c_low,c_high,i_low,i_high):
     return((i_high-i_low)/(c_high-c_low)*(pm25-c_low)+i_low)
 def overall_aqi_calculator(pm25,pm10):    
