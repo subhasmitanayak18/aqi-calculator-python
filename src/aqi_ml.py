@@ -24,3 +24,13 @@ r2 = r2_score(y_test, y_pred)
 
 print("Mean Absolute Error:", mae)
 print("R2 Score:", r2)
+# ---------- Predict AQI for new input ----------
+pm25 = float(input("Enter PM2.5: "))
+pm10 = float(input("Enter PM10: "))
+temp = float(input("Enter Temperature: "))
+humidity = float(input("Enter Humidity: "))
+
+new_data = [[pm25, pm10, temp, humidity]]
+predicted_aqi = model.predict(new_data)
+
+print("\nPredicted AQI:", round(predicted_aqi[0]))
