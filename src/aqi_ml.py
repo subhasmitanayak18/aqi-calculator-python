@@ -4,7 +4,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, r2_score
 
 
-# ---------- Load & prepare data ----------
 df = pd.read_csv(r"C:\OLIVIA\PYTHONFOLDER\project\data\air_quality_data.csv")
 df.dropna(inplace=True)
 
@@ -16,7 +15,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 
-# ---------- Train ML model ----------
 model = LinearRegression()
 model.fit(X_train, y_train)
 
@@ -26,7 +24,6 @@ mae = mean_absolute_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
 
-# ---------- Rule-based AQI ----------
 def rule_based_aqi(pm25):
     if pm25 <= 30:
         return (50 / 30) * pm25
@@ -42,7 +39,6 @@ def rule_based_aqi(pm25):
         return ((500 - 401) / (500 - 251)) * (pm25 - 251) + 401
 
 
-# ---------- User input ----------
 pm25 = float(input("Enter PM2.5: "))
 pm10 = float(input("Enter PM10: "))
 temp = float(input("Enter Temperature (°C): "))
@@ -57,7 +53,6 @@ ml_aqi = model.predict(new_data)[0]
 rule_aqi = rule_based_aqi(pm25)
 
 
-# ---------- Pretty output ----------
 print("\n" + "═" * 42)
 print("        🌍 AQI PREDICTION REPORT")
 print("═" * 42)
