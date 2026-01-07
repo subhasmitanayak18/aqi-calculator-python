@@ -1,12 +1,13 @@
 try:
  pm25=int(input("Enter PM2.5 concentration (µg/m³):"))
  pm10=int(input("Enter PM10 concentration (µg/m³):"))
+ NO2=int(input("Enter NO2 concentration (µg/m³):"))
 except ValueError:
    print("Please Enter valid numeric values")
    exit()
 def calculate_aqi(pm25,c_low,c_high,i_low,i_high):
     return((i_high-i_low)/(c_high-c_low)*(pm25-c_low)+i_low)
-def overall_aqi_calculator(pm25,pm10):    
+def overall_aqi_calculator(pm25,pm10,NO2,SO2,CO,O3):    
  if pm25<=30:
     aqi_25=calculate_aqi(pm25,0,30,0,50)
  elif pm25<=60:
@@ -31,6 +32,18 @@ def overall_aqi_calculator(pm25,pm10):
     aqi_10=calculate_aqi(pm10,351,430,301,400)
  else:
     aqi_10=calculate_aqi(pm10,431,500,401,500)
+ if NO2<=40:
+    aqi_NO2=calculate_aqi(NO2,0,40,0,50)
+ elif NO2 <= 80:
+    aqi_NO2=calculate_aqi(no2, 41, 80, 51, 100)
+ elif NO2 <= 180:
+    aqi_NO2=calculate_aqi(no2, 81, 180, 101, 200)
+ elif NO2 <= 280:
+    aqi_NO2=calculate_aqi(no2, 181, 280, 201, 300)
+ elif NO2 <= 400:
+    aqi_NO2=calculate_aqi(no2, 281, 400, 301, 400)
+ else:
+    aqi_NO2=calculate_aqi(no2, 401, 1000, 401, 500)
  if aqi_25>aqi_10:
     dominant_pollutant= "pm25"
     overall_aqi= aqi_25
